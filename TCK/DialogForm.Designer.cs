@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DialogForm));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.buttonSave = new MetroFramework.Controls.MetroButton();
             this.radioButtonClick = new MetroFramework.Controls.MetroRadioButton();
@@ -189,6 +190,7 @@
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.radioButtonClick);
             this.Controls.Add(this.buttonSave);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(380, 200);
             this.MinimizeBox = false;
