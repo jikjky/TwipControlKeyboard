@@ -1,0 +1,272 @@
+﻿namespace Twip
+{
+    partial class FormTKC
+    {
+        /// <summary>
+        /// 필수 디자이너 변수입니다.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// 사용 중인 모든 리소스를 정리합니다.
+        /// </summary>
+        /// <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form 디자이너에서 생성한 코드
+
+        /// <summary>
+        /// 디자이너 지원에 필요한 메서드입니다. 
+        /// 이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.components = new System.ComponentModel.Container();
+            this.panelTop = new System.Windows.Forms.Panel();
+            this.panelBottom = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.timerState = new System.Windows.Forms.Timer(this.components);
+            this.labelAlertBox = new MetroFramework.Controls.MetroLabel();
+            this.textBoxAlertBox = new MetroFramework.Controls.MetroTextBox();
+            this.buttonAlertBoxSave = new MetroFramework.Controls.MetroButton();
+            this.buttonStart = new MetroFramework.Controls.MetroButton();
+            this.buttonStop = new MetroFramework.Controls.MetroButton();
+            this.buttonEdit = new MetroFramework.Controls.MetroButton();
+            this.buttonAdd = new MetroFramework.Controls.MetroButton();
+            this.buttonDelete = new MetroFramework.Controls.MetroButton();
+            this.textBoxCurrentMessage = new MetroFramework.Controls.MetroTextBox();
+            this.labelState = new MetroFramework.Controls.MetroLabel();
+            this.labelKeyTime = new MetroFramework.Controls.MetroLabel();
+            this.panelTop.SuspendLayout();
+            this.panelBottom.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // panelTop
+            // 
+            this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelTop.Controls.Add(this.buttonAlertBoxSave);
+            this.panelTop.Controls.Add(this.textBoxAlertBox);
+            this.panelTop.Controls.Add(this.labelAlertBox);
+            this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTop.Location = new System.Drawing.Point(20, 60);
+            this.panelTop.Name = "panelTop";
+            this.panelTop.Size = new System.Drawing.Size(810, 36);
+            this.panelTop.TabIndex = 1;
+            // 
+            // panelBottom
+            // 
+            this.panelBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelBottom.Controls.Add(this.labelKeyTime);
+            this.panelBottom.Controls.Add(this.labelState);
+            this.panelBottom.Controls.Add(this.textBoxCurrentMessage);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelBottom.Location = new System.Drawing.Point(20, 452);
+            this.panelBottom.Name = "panelBottom";
+            this.panelBottom.Size = new System.Drawing.Size(810, 128);
+            this.panelBottom.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.buttonStop);
+            this.panel1.Controls.Add(this.buttonStart);
+            this.panel1.Location = new System.Drawing.Point(743, 102);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(87, 344);
+            this.panel1.TabIndex = 5;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.buttonDelete);
+            this.panel2.Controls.Add(this.buttonEdit);
+            this.panel2.Controls.Add(this.buttonAdd);
+            this.panel2.Controls.Add(this.listBox1);
+            this.panel2.Location = new System.Drawing.Point(20, 102);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(717, 344);
+            this.panel2.TabIndex = 6;
+            // 
+            // listBox1
+            // 
+            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 12;
+            this.listBox1.Location = new System.Drawing.Point(7, 7);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(624, 316);
+            this.listBox1.TabIndex = 2;
+            // 
+            // timerState
+            // 
+            this.timerState.Enabled = true;
+            this.timerState.Tick += new System.EventHandler(this.timerState_Tick);
+            // 
+            // labelAlertBox
+            // 
+            this.labelAlertBox.AutoSize = true;
+            this.labelAlertBox.Location = new System.Drawing.Point(5, 7);
+            this.labelAlertBox.Name = "labelAlertBox";
+            this.labelAlertBox.Size = new System.Drawing.Size(64, 19);
+            this.labelAlertBox.TabIndex = 7;
+            this.labelAlertBox.Text = "Alert Box";
+            // 
+            // textBoxAlertBox
+            // 
+            this.textBoxAlertBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxAlertBox.Location = new System.Drawing.Point(75, 2);
+            this.textBoxAlertBox.Name = "textBoxAlertBox";
+            this.textBoxAlertBox.PasswordChar = '*';
+            this.textBoxAlertBox.Size = new System.Drawing.Size(647, 28);
+            this.textBoxAlertBox.TabIndex = 7;
+            // 
+            // buttonAlertBoxSave
+            // 
+            this.buttonAlertBoxSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAlertBoxSave.Location = new System.Drawing.Point(728, 2);
+            this.buttonAlertBoxSave.Name = "buttonAlertBoxSave";
+            this.buttonAlertBoxSave.Size = new System.Drawing.Size(75, 28);
+            this.buttonAlertBoxSave.TabIndex = 8;
+            this.buttonAlertBoxSave.Text = "Save";
+            this.buttonAlertBoxSave.Click += new System.EventHandler(this.buttonAlertBoxSave_Click);
+            // 
+            // buttonStart
+            // 
+            this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStart.Location = new System.Drawing.Point(3, 7);
+            this.buttonStart.Name = "buttonStart";
+            this.buttonStart.Size = new System.Drawing.Size(75, 28);
+            this.buttonStart.TabIndex = 9;
+            this.buttonStart.Text = "Start";
+            this.buttonStart.Click += new System.EventHandler(this.buttonStart_Click);
+            // 
+            // buttonStop
+            // 
+            this.buttonStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonStop.Location = new System.Drawing.Point(3, 41);
+            this.buttonStop.Name = "buttonStop";
+            this.buttonStop.Size = new System.Drawing.Size(75, 28);
+            this.buttonStop.TabIndex = 10;
+            this.buttonStop.Text = "Stop";
+            this.buttonStop.Click += new System.EventHandler(this.buttonStop_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.Location = new System.Drawing.Point(637, 41);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(75, 28);
+            this.buttonEdit.TabIndex = 12;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // buttonAdd
+            // 
+            this.buttonAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonAdd.Location = new System.Drawing.Point(637, 7);
+            this.buttonAdd.Name = "buttonAdd";
+            this.buttonAdd.Size = new System.Drawing.Size(75, 28);
+            this.buttonAdd.TabIndex = 11;
+            this.buttonAdd.Text = "Add";
+            this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonDelete.Location = new System.Drawing.Point(637, 75);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(75, 28);
+            this.buttonDelete.TabIndex = 13;
+            this.buttonDelete.Text = "Delete";
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // textBoxCurrentMessage
+            // 
+            this.textBoxCurrentMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxCurrentMessage.Location = new System.Drawing.Point(7, 5);
+            this.textBoxCurrentMessage.Multiline = true;
+            this.textBoxCurrentMessage.Name = "textBoxCurrentMessage";
+            this.textBoxCurrentMessage.Size = new System.Drawing.Size(794, 91);
+            this.textBoxCurrentMessage.TabIndex = 9;
+            // 
+            // labelState
+            // 
+            this.labelState.AutoSize = true;
+            this.labelState.Location = new System.Drawing.Point(7, 98);
+            this.labelState.Name = "labelState";
+            this.labelState.Size = new System.Drawing.Size(38, 19);
+            this.labelState.TabIndex = 9;
+            this.labelState.Text = "State";
+            // 
+            // labelKeyTime
+            // 
+            this.labelKeyTime.AutoSize = true;
+            this.labelKeyTime.Location = new System.Drawing.Point(171, 98);
+            this.labelKeyTime.Name = "labelKeyTime";
+            this.labelKeyTime.Size = new System.Drawing.Size(0, 0);
+            this.labelKeyTime.TabIndex = 10;
+            // 
+            // FormTwip
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(850, 600);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panelBottom);
+            this.Controls.Add(this.panelTop);
+            this.MinimumSize = new System.Drawing.Size(850, 600);
+            this.Name = "FormTwip";
+            this.Text = "T K C";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
+            this.panelTop.ResumeLayout(false);
+            this.panelTop.PerformLayout();
+            this.panelBottom.ResumeLayout(false);
+            this.panelBottom.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+        private System.Windows.Forms.Panel panelTop;
+        private System.Windows.Forms.Panel panelBottom;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Timer timerState;
+        private System.Windows.Forms.ListBox listBox1;
+        private MetroFramework.Controls.MetroButton buttonAlertBoxSave;
+        private MetroFramework.Controls.MetroTextBox textBoxAlertBox;
+        private MetroFramework.Controls.MetroLabel labelAlertBox;
+        private MetroFramework.Controls.MetroLabel labelState;
+        private MetroFramework.Controls.MetroTextBox textBoxCurrentMessage;
+        private MetroFramework.Controls.MetroButton buttonStop;
+        private MetroFramework.Controls.MetroButton buttonStart;
+        private MetroFramework.Controls.MetroButton buttonDelete;
+        private MetroFramework.Controls.MetroButton buttonEdit;
+        private MetroFramework.Controls.MetroButton buttonAdd;
+        private MetroFramework.Controls.MetroLabel labelKeyTime;
+    }
+}
+

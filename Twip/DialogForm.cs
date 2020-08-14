@@ -11,7 +11,7 @@ using Twip.Class;
 
 namespace Twip
 {
-    public partial class DialogForm : Form
+    public partial class DialogForm : MetroFramework.Forms.MetroForm
     {
         ProcessMain mProess;
         int mIndex;
@@ -117,6 +117,11 @@ namespace Twip
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void DialogForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

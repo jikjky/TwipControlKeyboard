@@ -18,11 +18,11 @@ using Twip.Class;
 
 namespace Twip
 {
-    public partial class FormTwip : Form
+    public partial class FormTKC : MetroFramework.Forms.MetroForm
     {
         ProcessMain process = new ProcessMain();
 
-        public FormTwip()
+        public FormTKC()
         {
             InitializeComponent();
             textBoxCurrentMessage.ReadOnly = true;

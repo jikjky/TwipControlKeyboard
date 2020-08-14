@@ -16,7 +16,7 @@ namespace Twip
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTwip());
+            Application.Run(new FormTKC());
         }
     }
 }

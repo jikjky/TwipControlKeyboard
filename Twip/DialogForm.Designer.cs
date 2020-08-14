@@ -29,193 +29,191 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonCancel = new System.Windows.Forms.Button();
-            this.radioButtonClick = new System.Windows.Forms.RadioButton();
-            this.radioButtonNoneClick = new System.Windows.Forms.RadioButton();
-            this.checkBoxCtrl = new System.Windows.Forms.CheckBox();
-            this.checkBoxAlt = new System.Windows.Forms.CheckBox();
-            this.checkBoxShift = new System.Windows.Forms.CheckBox();
-            this.textBoxKey = new System.Windows.Forms.TextBox();
-            this.textBoxTime = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBoxAmount = new System.Windows.Forms.TextBox();
+            this.buttonSave = new MetroFramework.Controls.MetroButton();
+            this.radioButtonClick = new MetroFramework.Controls.MetroRadioButton();
+            this.buttonCancel = new MetroFramework.Controls.MetroButton();
+            this.checkBoxCtrl = new MetroFramework.Controls.MetroCheckBox();
+            this.checkBoxAlt = new MetroFramework.Controls.MetroCheckBox();
+            this.checkBoxShift = new MetroFramework.Controls.MetroCheckBox();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.textBoxKey = new MetroFramework.Controls.MetroTextBox();
+            this.textBoxAmount = new MetroFramework.Controls.MetroTextBox();
+            this.textBoxTime = new MetroFramework.Controls.MetroTextBox();
+            this.radioButtonNoneClick = new MetroFramework.Controls.MetroRadioButton();
             this.SuspendLayout();
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(185, 12);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 0;
-            this.buttonSave.Text = " Save";
-            this.buttonSave.UseVisualStyleBackColor = true;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonCancel.Location = new System.Drawing.Point(185, 41);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 1;
-            this.buttonCancel.Text = "Cancel";
-            this.buttonCancel.UseVisualStyleBackColor = true;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
-            // radioButtonClick
-            // 
-            this.radioButtonClick.AutoSize = true;
-            this.radioButtonClick.Checked = true;
-            this.radioButtonClick.Location = new System.Drawing.Point(12, 12);
-            this.radioButtonClick.Name = "radioButtonClick";
-            this.radioButtonClick.Size = new System.Drawing.Size(51, 16);
-            this.radioButtonClick.TabIndex = 2;
-            this.radioButtonClick.TabStop = true;
-            this.radioButtonClick.Text = "Click";
-            this.radioButtonClick.UseVisualStyleBackColor = true;
-            // 
-            // radioButtonNoneClick
-            // 
-            this.radioButtonNoneClick.AutoSize = true;
-            this.radioButtonNoneClick.Location = new System.Drawing.Point(12, 34);
-            this.radioButtonNoneClick.Name = "radioButtonNoneClick";
-            this.radioButtonNoneClick.Size = new System.Drawing.Size(81, 16);
-            this.radioButtonNoneClick.TabIndex = 3;
-            this.radioButtonNoneClick.Text = "NoneClick";
-            this.radioButtonNoneClick.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxCtrl
-            // 
-            this.checkBoxCtrl.AutoSize = true;
-            this.checkBoxCtrl.Location = new System.Drawing.Point(12, 139);
-            this.checkBoxCtrl.Name = "checkBoxCtrl";
-            this.checkBoxCtrl.Size = new System.Drawing.Size(43, 16);
-            this.checkBoxCtrl.TabIndex = 4;
-            this.checkBoxCtrl.Text = "Ctrl";
-            this.checkBoxCtrl.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAlt
-            // 
-            this.checkBoxAlt.AutoSize = true;
-            this.checkBoxAlt.Location = new System.Drawing.Point(12, 161);
-            this.checkBoxAlt.Name = "checkBoxAlt";
-            this.checkBoxAlt.Size = new System.Drawing.Size(38, 16);
-            this.checkBoxAlt.TabIndex = 5;
-            this.checkBoxAlt.Text = "Alt";
-            this.checkBoxAlt.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxShift
-            // 
-            this.checkBoxShift.AutoSize = true;
-            this.checkBoxShift.Location = new System.Drawing.Point(12, 183);
-            this.checkBoxShift.Name = "checkBoxShift";
-            this.checkBoxShift.Size = new System.Drawing.Size(48, 16);
-            this.checkBoxShift.TabIndex = 6;
-            this.checkBoxShift.Text = "Shift";
-            this.checkBoxShift.UseVisualStyleBackColor = true;
-            // 
-            // textBoxKey
-            // 
-            this.textBoxKey.Location = new System.Drawing.Point(63, 56);
-            this.textBoxKey.MaxLength = 1;
-            this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(100, 21);
-            this.textBoxKey.TabIndex = 7;
-            // 
-            // textBoxTime
-            // 
-            this.textBoxTime.Location = new System.Drawing.Point(63, 110);
-            this.textBoxTime.Name = "textBoxTime";
-            this.textBoxTime.Size = new System.Drawing.Size(100, 21);
-            this.textBoxTime.TabIndex = 8;
-            this.textBoxTime.Text = "0";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 61);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 12);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Key";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 115);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 12);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Time";
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label3
+            // buttonSave
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 88);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 12);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Amount";
+            this.buttonSave.Location = new System.Drawing.Point(282, 63);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.TabIndex = 13;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // radioButtonClick
+            // 
+            this.radioButtonClick.AutoSize = true;
+            this.radioButtonClick.Location = new System.Drawing.Point(14, 63);
+            this.radioButtonClick.Name = "radioButtonClick";
+            this.radioButtonClick.Size = new System.Drawing.Size(49, 15);
+            this.radioButtonClick.TabIndex = 14;
+            this.radioButtonClick.TabStop = true;
+            this.radioButtonClick.Text = "Click";
+            this.radioButtonClick.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(282, 92);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 15;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
+            // checkBoxCtrl
+            // 
+            this.checkBoxCtrl.AutoSize = true;
+            this.checkBoxCtrl.Location = new System.Drawing.Point(21, 173);
+            this.checkBoxCtrl.Name = "checkBoxCtrl";
+            this.checkBoxCtrl.Size = new System.Drawing.Size(42, 15);
+            this.checkBoxCtrl.TabIndex = 16;
+            this.checkBoxCtrl.Text = "Ctrl";
+            this.checkBoxCtrl.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAlt
+            // 
+            this.checkBoxAlt.AutoSize = true;
+            this.checkBoxAlt.Location = new System.Drawing.Point(76, 173);
+            this.checkBoxAlt.Name = "checkBoxAlt";
+            this.checkBoxAlt.Size = new System.Drawing.Size(38, 15);
+            this.checkBoxAlt.TabIndex = 17;
+            this.checkBoxAlt.Text = "Alt";
+            this.checkBoxAlt.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxShift
+            // 
+            this.checkBoxShift.AutoSize = true;
+            this.checkBoxShift.Location = new System.Drawing.Point(130, 173);
+            this.checkBoxShift.Name = "checkBoxShift";
+            this.checkBoxShift.Size = new System.Drawing.Size(47, 15);
+            this.checkBoxShift.TabIndex = 18;
+            this.checkBoxShift.Text = "Shift";
+            this.checkBoxShift.UseVisualStyleBackColor = true;
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(14, 89);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(29, 19);
+            this.metroLabel1.TabIndex = 19;
+            this.metroLabel1.Text = "Key";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(14, 116);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(56, 19);
+            this.metroLabel2.TabIndex = 20;
+            this.metroLabel2.Text = "Amount";
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(14, 142);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(38, 19);
+            this.metroLabel3.TabIndex = 21;
+            this.metroLabel3.Text = "Time";
+            // 
+            // textBoxKey
+            // 
+            this.textBoxKey.Location = new System.Drawing.Point(76, 89);
+            this.textBoxKey.MaxLength = 1;
+            this.textBoxKey.Name = "textBoxKey";
+            this.textBoxKey.Size = new System.Drawing.Size(148, 20);
+            this.textBoxKey.TabIndex = 22;
             // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(63, 83);
+            this.textBoxAmount.Location = new System.Drawing.Point(76, 115);
             this.textBoxAmount.Name = "textBoxAmount";
-            this.textBoxAmount.Size = new System.Drawing.Size(100, 21);
-            this.textBoxAmount.TabIndex = 11;
+            this.textBoxAmount.Size = new System.Drawing.Size(148, 20);
+            this.textBoxAmount.TabIndex = 23;
             this.textBoxAmount.Text = "0";
+            // 
+            // textBoxTime
+            // 
+            this.textBoxTime.Location = new System.Drawing.Point(76, 141);
+            this.textBoxTime.Name = "textBoxTime";
+            this.textBoxTime.Size = new System.Drawing.Size(148, 20);
+            this.textBoxTime.TabIndex = 24;
+            this.textBoxTime.Text = "0";
+            // 
+            // radioButtonNoneClick
+            // 
+            this.radioButtonNoneClick.AutoSize = true;
+            this.radioButtonNoneClick.Location = new System.Drawing.Point(77, 63);
+            this.radioButtonNoneClick.Name = "radioButtonNoneClick";
+            this.radioButtonNoneClick.Size = new System.Drawing.Size(78, 15);
+            this.radioButtonNoneClick.TabIndex = 25;
+            this.radioButtonNoneClick.TabStop = true;
+            this.radioButtonNoneClick.Text = "NoneClick";
+            this.radioButtonNoneClick.UseVisualStyleBackColor = true;
             // 
             // DialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(274, 204);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBoxAmount);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.ClientSize = new System.Drawing.Size(380, 200);
+            this.Controls.Add(this.radioButtonNoneClick);
             this.Controls.Add(this.textBoxTime);
+            this.Controls.Add(this.textBoxAmount);
             this.Controls.Add(this.textBoxKey);
+            this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.metroLabel1);
             this.Controls.Add(this.checkBoxShift);
             this.Controls.Add(this.checkBoxAlt);
             this.Controls.Add(this.checkBoxCtrl);
-            this.Controls.Add(this.radioButtonNoneClick);
-            this.Controls.Add(this.radioButtonClick);
             this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.radioButtonClick);
             this.Controls.Add(this.buttonSave);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(380, 200);
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(380, 200);
             this.Name = "DialogForm";
-            this.Text = "DialogForm";
+            this.Text = "Setting";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.RadioButton radioButtonClick;
-        private System.Windows.Forms.RadioButton radioButtonNoneClick;
-        private System.Windows.Forms.CheckBox checkBoxCtrl;
-        private System.Windows.Forms.CheckBox checkBoxAlt;
-        private System.Windows.Forms.CheckBox checkBoxShift;
-        private System.Windows.Forms.TextBox textBoxKey;
-        private System.Windows.Forms.TextBox textBoxTime;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBoxAmount;
+        private MetroFramework.Controls.MetroButton buttonSave;
+        private MetroFramework.Controls.MetroRadioButton radioButtonClick;
+        private MetroFramework.Controls.MetroButton buttonCancel;
+        private MetroFramework.Controls.MetroCheckBox checkBoxCtrl;
+        private MetroFramework.Controls.MetroCheckBox checkBoxAlt;
+        private MetroFramework.Controls.MetroCheckBox checkBoxShift;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroTextBox textBoxKey;
+        private MetroFramework.Controls.MetroTextBox textBoxAmount;
+        private MetroFramework.Controls.MetroTextBox textBoxTime;
+        private MetroFramework.Controls.MetroRadioButton radioButtonNoneClick;
     }
 }
