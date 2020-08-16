@@ -5,11 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Twip.Class.INI
+namespace TCK.Class.INI
 {
     public class URLIni : ClassToINI
     {
-        public string URL { get; set; } = "";
+        public string TwipURL { get; set; } = "";
+        public int DelayTime { get; set; } = 0;
+        public string ToonationURL { get; set; } = "";
         public URLIni(FileInfo fileInfo) : base(fileInfo)
         {
             

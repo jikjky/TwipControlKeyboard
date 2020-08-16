@@ -3,7 +3,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace Twip.Class.Keyboard
+namespace TCK.Class.Keyboard
 {
 
     /// <summary>

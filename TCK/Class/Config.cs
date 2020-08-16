@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Twip.Class
+namespace TCK.Class
 {
     public class Config
     {
@@ -16,6 +16,7 @@ namespace Twip.Class
         }
         public Keys key;
         public EState state;
+        public string roulette;
         public int amount;
         public int time;
         public bool bCtrl;

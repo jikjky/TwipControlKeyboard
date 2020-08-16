@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Twip
+namespace TCK
 {
     static class Program
     {
@@ -16,7 +16,7 @@ namespace Twip
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormTKC());
+            Application.Run(new FormTCK());
         }
     }
 }

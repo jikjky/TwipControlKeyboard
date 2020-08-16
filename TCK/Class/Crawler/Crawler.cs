@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using static TCK.Class.ProcessMain;
 
-namespace Twip.Class.Crawler
+namespace TCK.Class.Crawler
 {
-    public delegate void NewState();
+    public delegate void NewState(TCK.Class.ProcessMain.TwipOrToonation eTot);
     public class Crawler : IDisposable
     {
         ChromeDriverService mDriverService;
@@ -19,7 +20,12 @@ namespace Twip.Class.Crawler
         private bool mbGetting;
         private bool mbExitThread;
         public bool IsStarted { get; set; }
+        public bool IsRoulette { get; set; }
         public static event NewState NewStateEvent;
+
+        public int DelayTime { get; set; }
+
+        private TwipOrToonation MyProperty { get; set; }
 
         public enum EState
         {
@@ -42,25 +48,34 @@ namespace Twip.Class.Crawler
         public int IsAmount { get; set; }
         public string IsComment { get; set; }
         Thread mThread;
-        public Crawler()
+        public Crawler(TwipOrToonation eTot)
         {
+            MyProperty = eTot;
             mbExitThread = false;
             mbGetting = false;
             IsStarted = false;
             mDriverService = ChromeDriverService.CreateDefaultService();
             mDriverService.HideCommandPromptWindow = true;
-            
+
             var options = new ChromeOptions();
             options.AddArgument("headless");
+            options.AddArgument("no-sandbox");
+            options.AddArgument("autoplay-policy=no-user-gesture-required");
+            options.AddArgument("--mute-audio");
             options.AddArgument("window-size=1920x1080");
             options.AddArgument("disable-gpu");
+            options.AddArgument("lang=ko_KR");
+            options.AddArgument("user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36");
             mDriver = new ChromeDriver(mDriverService, options);
+            mDriver.Manage().Cookies.DeleteAllCookies();
         }
 
         public void Start()
         {
             try
             {
+                if (IsUrl == string.Empty)
+                    return;
                 if (IsStarted != true)
                 {
                     GoToUrl(IsUrl);
@@ -100,13 +115,27 @@ namespace Twip.Class.Crawler
         {
             try
             {
-                var idField = mDriver.FindElementById("body");
-                var classValue = idField.GetAttribute("class");
-                if (classValue == "layout-above")
+                if (MyProperty == TwipOrToonation.Twip)
                 {
-                    return EState.Getting;
+                    var idField = mDriver.FindElementById("body");
+                    var classValue = idField.GetAttribute("class");
+                    if (classValue == "layout-above")
+                    {
+                        return EState.Getting;
+                    }
+                    return EState.Nomal;
                 }
-                return EState.Nomal;
+                else
+                {
+                    var idField = mDriver.FindElementByClassName("content");
+                    var divField = idField.FindElement(By.TagName("div"));
+                    var classValue = divField.GetAttribute("class");
+                    if (classValue == "alert-layout")
+                    {
+                        return EState.Getting;
+                    }
+                    return EState.Nomal;
+                }
             }
             catch
             {
@@ -117,13 +146,33 @@ namespace Twip.Class.Crawler
         {
             try
             {
-                var idField = mDriver.FindElementById("nickname");
-                string returnValue = "";
-                foreach (var item in idField.FindElements(By.TagName("span")))
+                if (MyProperty == TwipOrToonation.Twip)
                 {
-                    returnValue += item.Text;
+                    var idField = mDriver.FindElementById("nickname");
+                    string returnValue = "";
+                    foreach (var item in idField.FindElements(By.TagName("span")))
+                    {
+                        returnValue += item.Text;
+                    }
+                    return returnValue;
                 }
-                return returnValue;
+                else
+                {
+                    var idField = mDriver.FindElementByClassName("text-system");
+                    string returnValue = "";
+                    int index = 0;
+                    foreach (var item in idField.FindElements(By.TagName("span")))
+                    {
+                        if (index == 2)
+                        {
+                            returnValue += item.Text;
+                            break;
+                        }
+                        index++;
+
+                    }
+                    return returnValue;
+                }
             }
             catch
             {
@@ -135,15 +184,36 @@ namespace Twip.Class.Crawler
         {
             try
             {
-                var idField = mDriver.FindElementById("amount");
-                string returnValue = "";
-                foreach (var item in idField.FindElements(By.TagName("span")))
+                if (MyProperty == TwipOrToonation.Twip)
                 {
-                    returnValue += item.Text;
+                    var idField = mDriver.FindElementById("amount");
+                    string returnValue = "";
+                    foreach (var item in idField.FindElements(By.TagName("span")))
+                    {
+                        returnValue += item.Text;
+                    }
+                    returnValue = returnValue.Replace(",", "");
+                    return Convert.ToInt32(returnValue);
                 }
-                returnValue = returnValue.Replace(",", "");
+                else
+                {
+                    var idField = mDriver.FindElementByClassName("text-system");
+                    string returnValue = "";
+                    int index = 0;
+                    foreach (var item in idField.FindElements(By.TagName("span")))
+                    {
+                        if (index == 4)
+                        {
+                            returnValue += item.Text;
+                            break;
+                        }
+                        index++;
+                        
+                    }
+                    returnValue = returnValue.Replace(",", "");
+                    return Convert.ToInt32(returnValue);
+                }
 
-                return Convert.ToInt32(returnValue);
             }
             catch
             {
@@ -155,10 +225,53 @@ namespace Twip.Class.Crawler
         {
             try
             {
-                var idField = mDriver.FindElementById("comment");
-                string returnValue = idField.Text;
+                if (MyProperty == TwipOrToonation.Twip)
+                {
+                    var idField = mDriver.FindElementById("comment");
+                    var isRoulette = idField.FindElements(By.ClassName("candidate-inner"));
+                    if (isRoulette.Count > 0)
+                    {
+                        if (DelayTime < 2000)
+                        {
+                            Thread.Sleep(2000);
+                        }
+                        else
+                        {
+                            Thread.Sleep(DelayTime - 1500);
+                        }
+                        string rouletteResult = "";
+                        foreach (var item in isRoulette[0].FindElements(By.ClassName("candidate")))
+                        {
+                            if (item.Text != "")
+                            {
+                                rouletteResult = item.Text;
+                            }
+                        }
+                        IsRoulette = true;
+                        return rouletteResult;
 
-                return returnValue;
+                    }
+                    string returnValue = idField.Text;
+
+                    return returnValue;
+                }
+                else
+                {
+                    var idField = mDriver.FindElementByClassName("text-content");
+                    string returnValue = "";
+                    int index = 0;
+                    foreach (var item in idField.FindElements(By.TagName("span")))
+                    {
+                        if (index == 1)
+                        {
+                            returnValue += item.Text;
+                            break;
+                        }
+
+                        index++;   
+                    }
+                    return returnValue;
+                }
             }
             catch
             {
@@ -181,7 +294,7 @@ namespace Twip.Class.Crawler
                             IsNickName = GetNickName();
                             IsAmount = GetAmount();
                             IsComment = GetComment();
-                            NewStateEvent();
+                            NewStateEvent(MyProperty);
                             mbGetting = true;
                         }
                     }
@@ -190,7 +303,7 @@ namespace Twip.Class.Crawler
                         mbGetting = false;
                     }
                 }
-                Thread.Sleep(100);
+                Thread.Sleep(50);
             }
         }
 

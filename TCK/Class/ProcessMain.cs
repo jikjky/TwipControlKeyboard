@@ -6,15 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Twip.Class.Crawler;
-using Twip.Class.INI;
-using Twip.Class.Keyboard;
+using TCK.Class.Crawler;
+using TCK.Class.INI;
+using TCK.Class.Keyboard;
 
-namespace Twip.Class
+namespace TCK.Class
 {
     public class ProcessMain
     {
-        public Twip.Class.Crawler.Crawler Crawler = new Twip.Class.Crawler.Crawler();
+        public enum TwipOrToonation
+        {
+            Twip,
+            Toonation
+        }
+        public TCK.Class.Crawler.Crawler ToonationCrawler = new TCK.Class.Crawler.Crawler(TwipOrToonation.Toonation);
+        public TCK.Class.Crawler.Crawler TwipCrawler = new TCK.Class.Crawler.Crawler(TwipOrToonation.Twip);
+
         public URLIni URL = new URLIni(new FileInfo("URL.ini"));
         public KeyboardHook keyboardHook = new KeyboardHook();
 
@@ -22,10 +29,11 @@ namespace Twip.Class
 
         public ProcessMain()
         {
-            Crawler.IsUrl = URL.URL;
+            TwipCrawler.IsUrl = URL.TwipURL;
+            ToonationCrawler.IsUrl = URL.ToonationURL;
             keyboardHook.KeyDown += new KeyEventHandler(keyboardHook_KeyDown);
             keyboardHook.Start();
-            Twip.Class.Crawler.Crawler.NewStateEvent += new NewState(NewState);
+            TCK.Class.Crawler.Crawler.NewStateEvent += new NewState(NewState);
         }
         public void SaveConfig()
         {
@@ -45,19 +53,72 @@ namespace Twip.Class
             currentConfig = JsonConvert.DeserializeObject<List<Config>>(jsonString);
         }
 
-        private void NewState()
+        private void NewState(TwipOrToonation eTot)
         {
             foreach (var item in currentConfig)
             {
-                if (item.amount == Crawler.IsAmount)
+                if (eTot == TwipOrToonation.Twip)
                 {
-                    if (item.state == Config.EState.Click)
+                    if (TwipCrawler.IsRoulette == true)
                     {
-                        KeyClick(item.key, item.bCtrl, item.bAlt, item.bShift);
+                        if (item.roulette == TwipCrawler.IsComment)
+                        {
+                            if (item.state == Config.EState.Click)
+                            {
+                                KeyClick(item.key, item.bCtrl, item.bAlt, item.bShift);
+                            }
+                            else if (item.state == Config.EState.NoneClick)
+                            {
+                                keyboardHook.AddNotInputKey((char)item.key, item.time);
+                            }
+                        }
+                        TwipCrawler.IsRoulette = false;
                     }
-                    else if (item.state == Config.EState.NoneClick)
+                    else
                     {
-                        keyboardHook.AddNotInputKey((char)item.key, item.time);
+                        if (item.amount == TwipCrawler.IsAmount)
+                        {
+                            if (item.state == Config.EState.Click)
+                            {
+                                KeyClick(item.key, item.bCtrl, item.bAlt, item.bShift);
+                            }
+                            else if (item.state == Config.EState.NoneClick)
+                            {
+                                keyboardHook.AddNotInputKey((char)item.key, item.time);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (ToonationCrawler.IsRoulette == true)
+                    {
+                        if (item.roulette == ToonationCrawler.IsComment)
+                        {
+                            if (item.state == Config.EState.Click)
+                            {
+                                KeyClick(item.key, item.bCtrl, item.bAlt, item.bShift);
+                            }
+                            else if (item.state == Config.EState.NoneClick)
+                            {
+                                keyboardHook.AddNotInputKey((char)item.key, item.time);
+                            }
+                        }
+                        ToonationCrawler.IsRoulette = false;
+                    }
+                    else
+                    {
+                        if (item.amount == ToonationCrawler.IsAmount)
+                        {
+                            if (item.state == Config.EState.Click)
+                            {
+                                KeyClick(item.key, item.bCtrl, item.bAlt, item.bShift);
+                            }
+                            else if (item.state == Config.EState.NoneClick)
+                            {
+                                keyboardHook.AddNotInputKey((char)item.key, item.time);
+                            }
+                        }
                     }
                 }
             }

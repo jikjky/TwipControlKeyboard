@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Twip.Class;
+using TCK.Class;
 
-namespace Twip
+namespace TCK
 {
     public partial class DialogForm : MetroFramework.Forms.MetroForm
     {
@@ -20,6 +20,9 @@ namespace Twip
             InitializeComponent();
             mProess = process;
             mIndex = index;
+
+            metroComboBoxKey.Items.AddRange(Enum.GetNames(typeof(Keys)));
+            metroComboBoxKey.SelectedIndex = 0;
 
             if (mIndex != -1)
             {
@@ -32,9 +35,11 @@ namespace Twip
                 {
                     radioButtonNoneClick.Checked = true;
                 }
-                textBoxKey.Text = ((char)editConfig.key).ToString();
+                metroComboBoxKey.Items.AddRange(Enum.GetNames(typeof(Keys)));
+                metroComboBoxKey.SelectedIndex = metroComboBoxKey.Items.IndexOf(editConfig.key.ToString());
                 textBoxAmount.Text = editConfig.amount.ToString();
-                textBoxTime.Text = editConfig.time.ToString();  
+                textBoxTime.Text = editConfig.time.ToString();
+                metroTextBoxRoulette.Text = editConfig.roulette;
                 checkBoxCtrl.Checked = editConfig.bCtrl;
                 checkBoxAlt.Checked = editConfig.bAlt;
                 checkBoxShift.Checked = editConfig.bShift;
@@ -63,16 +68,11 @@ namespace Twip
         {
             int time;
             int amount;
-            if (textBoxKey.Text.Length == 0)
-            {
-                MessageBox.Show("Empty Key");
-                return;
-            }
             if (mIndex == -1)
             {
                 Config newConfig = new Config();
                 newConfig.state = radioButtonClick.Checked == true ? Config.EState.Click : Config.EState.NoneClick;
-                newConfig.key = (Keys)Enum.Parse(typeof(Keys), textBoxKey.Text.ToUpper());
+                newConfig.key = (Keys)Enum.Parse(typeof(Keys), metroComboBoxKey.Text);
                 if (int.TryParse(textBoxTime.Text, out time) == false)
                 {
                     MessageBox.Show("Time is not Number");
@@ -84,6 +84,7 @@ namespace Twip
                     MessageBox.Show("Amount is not Number");
                     return;
                 }
+                newConfig.roulette = metroTextBoxRoulette.Text;
                 newConfig.amount = amount;
                 newConfig.bCtrl = checkBoxCtrl.Checked;
                 newConfig.bAlt = checkBoxAlt.Checked;
@@ -94,7 +95,7 @@ namespace Twip
             {
                 Config editConfig = mProess.currentConfig[mIndex];
                 editConfig.state = radioButtonClick.Checked == true ? Config.EState.Click : Config.EState.NoneClick;
-                editConfig.key = (Keys)Enum.Parse(typeof(Keys), textBoxKey.Text.ToUpper());
+                editConfig.key = (Keys)Enum.Parse(typeof(Keys), metroComboBoxKey.Text);
                 if (int.TryParse(textBoxTime.Text, out time) == false)
                 {
                     MessageBox.Show("Time is not Number");
@@ -106,6 +107,7 @@ namespace Twip
                     MessageBox.Show("Amount is not Number");
                     return;
                 }
+                editConfig.roulette = metroTextBoxRoulette.Text;
                 editConfig.amount = amount;
                 editConfig.bCtrl = checkBoxCtrl.Checked;
                 editConfig.bAlt = checkBoxAlt.Checked;

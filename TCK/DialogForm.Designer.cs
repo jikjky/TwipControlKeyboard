@@ -1,4 +1,4 @@
-﻿namespace Twip
+﻿namespace TCK
 {
     partial class DialogForm
     {
@@ -40,10 +40,12 @@
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.textBoxKey = new MetroFramework.Controls.MetroTextBox();
             this.textBoxAmount = new MetroFramework.Controls.MetroTextBox();
             this.textBoxTime = new MetroFramework.Controls.MetroTextBox();
             this.radioButtonNoneClick = new MetroFramework.Controls.MetroRadioButton();
+            this.metroComboBoxKey = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroTextBoxRoulette = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
             // timer1
@@ -83,7 +85,7 @@
             // checkBoxCtrl
             // 
             this.checkBoxCtrl.AutoSize = true;
-            this.checkBoxCtrl.Location = new System.Drawing.Point(21, 173);
+            this.checkBoxCtrl.Location = new System.Drawing.Point(21, 206);
             this.checkBoxCtrl.Name = "checkBoxCtrl";
             this.checkBoxCtrl.Size = new System.Drawing.Size(42, 15);
             this.checkBoxCtrl.TabIndex = 16;
@@ -93,7 +95,7 @@
             // checkBoxAlt
             // 
             this.checkBoxAlt.AutoSize = true;
-            this.checkBoxAlt.Location = new System.Drawing.Point(76, 173);
+            this.checkBoxAlt.Location = new System.Drawing.Point(76, 206);
             this.checkBoxAlt.Name = "checkBoxAlt";
             this.checkBoxAlt.Size = new System.Drawing.Size(38, 15);
             this.checkBoxAlt.TabIndex = 17;
@@ -103,7 +105,7 @@
             // checkBoxShift
             // 
             this.checkBoxShift.AutoSize = true;
-            this.checkBoxShift.Location = new System.Drawing.Point(130, 173);
+            this.checkBoxShift.Location = new System.Drawing.Point(130, 206);
             this.checkBoxShift.Name = "checkBoxShift";
             this.checkBoxShift.Size = new System.Drawing.Size(47, 15);
             this.checkBoxShift.TabIndex = 18;
@@ -122,7 +124,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(14, 116);
+            this.metroLabel2.Location = new System.Drawing.Point(14, 148);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(56, 19);
             this.metroLabel2.TabIndex = 20;
@@ -131,23 +133,15 @@
             // metroLabel3
             // 
             this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(14, 142);
+            this.metroLabel3.Location = new System.Drawing.Point(14, 174);
             this.metroLabel3.Name = "metroLabel3";
             this.metroLabel3.Size = new System.Drawing.Size(38, 19);
             this.metroLabel3.TabIndex = 21;
             this.metroLabel3.Text = "Time";
             // 
-            // textBoxKey
-            // 
-            this.textBoxKey.Location = new System.Drawing.Point(76, 89);
-            this.textBoxKey.MaxLength = 1;
-            this.textBoxKey.Name = "textBoxKey";
-            this.textBoxKey.Size = new System.Drawing.Size(148, 20);
-            this.textBoxKey.TabIndex = 22;
-            // 
             // textBoxAmount
             // 
-            this.textBoxAmount.Location = new System.Drawing.Point(76, 115);
+            this.textBoxAmount.Location = new System.Drawing.Point(76, 148);
             this.textBoxAmount.Name = "textBoxAmount";
             this.textBoxAmount.Size = new System.Drawing.Size(148, 20);
             this.textBoxAmount.TabIndex = 23;
@@ -155,7 +149,7 @@
             // 
             // textBoxTime
             // 
-            this.textBoxTime.Location = new System.Drawing.Point(76, 141);
+            this.textBoxTime.Location = new System.Drawing.Point(76, 174);
             this.textBoxTime.Name = "textBoxTime";
             this.textBoxTime.Size = new System.Drawing.Size(148, 20);
             this.textBoxTime.TabIndex = 24;
@@ -172,15 +166,42 @@
             this.radioButtonNoneClick.Text = "NoneClick";
             this.radioButtonNoneClick.UseVisualStyleBackColor = true;
             // 
+            // metroComboBoxKey
+            // 
+            this.metroComboBoxKey.FormattingEnabled = true;
+            this.metroComboBoxKey.ItemHeight = 23;
+            this.metroComboBoxKey.Location = new System.Drawing.Point(77, 84);
+            this.metroComboBoxKey.Name = "metroComboBoxKey";
+            this.metroComboBoxKey.Size = new System.Drawing.Size(147, 29);
+            this.metroComboBoxKey.TabIndex = 26;
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(14, 122);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(57, 19);
+            this.metroLabel4.TabIndex = 27;
+            this.metroLabel4.Text = "Roulette";
+            // 
+            // metroTextBoxRoulette
+            // 
+            this.metroTextBoxRoulette.Location = new System.Drawing.Point(76, 122);
+            this.metroTextBoxRoulette.Name = "metroTextBoxRoulette";
+            this.metroTextBoxRoulette.Size = new System.Drawing.Size(148, 20);
+            this.metroTextBoxRoulette.TabIndex = 28;
+            // 
             // DialogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 200);
+            this.ClientSize = new System.Drawing.Size(380, 250);
+            this.Controls.Add(this.metroTextBoxRoulette);
+            this.Controls.Add(this.metroLabel4);
+            this.Controls.Add(this.metroComboBoxKey);
             this.Controls.Add(this.radioButtonNoneClick);
             this.Controls.Add(this.textBoxTime);
             this.Controls.Add(this.textBoxAmount);
-            this.Controls.Add(this.textBoxKey);
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
@@ -192,9 +213,9 @@
             this.Controls.Add(this.buttonSave);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(380, 200);
+            this.MaximumSize = new System.Drawing.Size(380, 250);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(380, 200);
+            this.MinimumSize = new System.Drawing.Size(380, 250);
             this.Name = "DialogForm";
             this.Text = "Setting";
             this.ResumeLayout(false);
@@ -213,9 +234,11 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroTextBox textBoxKey;
         private MetroFramework.Controls.MetroTextBox textBoxAmount;
         private MetroFramework.Controls.MetroTextBox textBoxTime;
         private MetroFramework.Controls.MetroRadioButton radioButtonNoneClick;
+        private MetroFramework.Controls.MetroComboBox metroComboBoxKey;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroTextBox metroTextBoxRoulette;
     }
 }

@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Twip.Class.INI
+namespace TCK.Class.INI
 {
     /// <summary>
     /// 부모로 상속하여 INI파일을 쉽게 쓸수 있다.

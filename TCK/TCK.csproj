@@ -81,19 +81,19 @@
     <Compile Include="DialogForm.Designer.cs">
       <DependentUpon>DialogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormTKC.cs">
+    <Compile Include="FormTCK.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormTKC.Designer.cs">
-      <DependentUpon>FormTKC.cs</DependentUpon>
+    <Compile Include="FormTCK.Designer.cs">
+      <DependentUpon>FormTCK.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DialogForm.resx">
       <DependentUpon>DialogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormTKC.resx">
-      <DependentUpon>FormTKC.cs</DependentUpon>
+    <EmbeddedResource Include="FormTCK.resx">
+      <DependentUpon>FormTCK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

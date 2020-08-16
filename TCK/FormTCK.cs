@@ -11,24 +11,33 @@ using System.Net;
 using System.IO;
 using System.Threading;
 using System.Diagnostics;
-using Twip.Class.Crawler;
-using Twip.Class.INI;
-using Twip.Class.Keyboard;
-using Twip.Class;
+using TCK.Class.Crawler;
+using TCK.Class.INI;
+using TCK.Class.Keyboard;
+using TCK.Class;
+using static TCK.Class.ProcessMain;
 
-namespace Twip
+namespace TCK
 {
-    public partial class FormTKC : MetroFramework.Forms.MetroForm
+    public partial class FormTCK : MetroFramework.Forms.MetroForm
     {
         ProcessMain process = new ProcessMain();
 
-        public FormTKC()
+        public FormTCK()
         {
             InitializeComponent();
             textBoxCurrentMessage.ReadOnly = true;
-            textBoxAlertBox.Text = process.URL.URL;
-            process.Crawler.IsUrl = process.URL.URL;
+            textBoxAlertBoxTwip.Text = process.URL.TwipURL;
+            process.TwipCrawler.IsUrl = process.URL.TwipURL;
+            process.TwipCrawler.DelayTime = process.URL.DelayTime;
+            textBoxAlertBoxToonation.Text = process.URL.ToonationURL;
+            metroTextBoxDelay.Text = process.URL.DelayTime.ToString();
+            process.ToonationCrawler.IsUrl = process.URL.ToonationURL;
             Crawler.NewStateEvent += new NewState(NewState);
+            if (new FileInfo("config.json").Exists == false)
+            {
+                process.SaveConfig();
+            }
             process.LoadConfig();
             ListBoxUpdate();
         }
@@ -44,30 +53,55 @@ namespace Twip
                     addString += "\t";
                 }
                 addString += "Key : " + item.key + "\t\t";
-                addString += "Amount : " + item.amount;
+                addString += "Amount : " + item.amount + "\t\t";
+                addString += "Roulette : " + item.roulette;
                 listBox1.Items.Add(addString);
             } 
         }
 
         private void buttonAlertBoxSave_Click(object sender, EventArgs e)
         {
-            process.URL.URL = textBoxAlertBox.Text;
+            int value = 0;
+            if (int.TryParse(metroTextBoxDelay.Text, out value) == false)
+            {
+                MessageBox.Show("Delay Time is not number");
+                return;
+            }
+
+            process.URL.DelayTime = value;
+            process.URL.TwipURL = textBoxAlertBoxTwip.Text;
+            process.URL.ToonationURL = textBoxAlertBoxToonation.Text;
+
             process.URL.SaveINI();
-            process.Crawler.IsUrl = process.URL.URL;
+            process.TwipCrawler.IsUrl = process.URL.TwipURL;
+            process.TwipCrawler.DelayTime = value;
+            process.ToonationCrawler.IsUrl = process.URL.ToonationURL;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            process.Crawler.Dispose();
+            process.TwipCrawler.Dispose();
+            process.ToonationCrawler.Dispose();
         }
 
-        private void NewState()
+        private void NewState(TwipOrToonation eTot)
         {
             this.Invoke(new Action(() => 
             {
-                string text = $"NickName = {process.Crawler.IsNickName}\r\n";
-                text += $"Amount = {process.Crawler.IsAmount}\r\n";
-                text += $"Comment = {process.Crawler.IsComment}\r\n";
+                string text = "";
+                text += eTot.ToString() + "\r\n";
+                if (eTot == TwipOrToonation.Twip)
+                {
+                    text += $"NickName = {process.TwipCrawler.IsNickName}\r\n";
+                    text += $"Amount = {process.TwipCrawler.IsAmount}\r\n";
+                    text += $"Comment = {process.TwipCrawler.IsComment}\r\n";
+                }
+                else
+                {
+                    text += $"NickName = {process.ToonationCrawler.IsNickName}\r\n";
+                    text += $"Amount = {process.ToonationCrawler.IsAmount}\r\n";
+                    text += $"Comment = {process.ToonationCrawler.IsComment}\r\n";
+                }
 
                 textBoxCurrentMessage.Text = text;
             }));
@@ -75,29 +109,38 @@ namespace Twip
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            process.Crawler.Start();
+            process.TwipCrawler.Start();
+            process.ToonationCrawler.Start();
         }
 
         private void buttonStop_Click(object sender, EventArgs e)
         {
-            process.Crawler.Stop();
+            process.TwipCrawler.Stop();
+            process.ToonationCrawler.Stop();
         }
 
         private void timerState_Tick(object sender, EventArgs e)
         {
-            labelKeyTime.Text = "";
+            string text = "";
             foreach (var item in process.keyboardHook.notInputKeys)
             {
-                labelKeyTime.Text += " Key : " + item.key;
-                labelKeyTime.Text += " Time : " + item.time.ToString("ss");
-                labelKeyTime.Text += " EndTime : " + item.timeOut.ToString("ss");
+                text += " Key : " + item.key;
+                text += " Time : " + item.time.ToString("ss");
+                text += " EndTime : " + item.timeOut.ToString("ss");
+
+                labelKeyTime.Text = text;
             }
-            if (process.Crawler.IsStarted == true)
+            if (process.keyboardHook.notInputKeys.Count == 0)
+            {
+                labelKeyTime.Text = "";
+            }
+            if (process.TwipCrawler.IsStarted == true || process.ToonationCrawler.IsStarted == true)
             {
                 buttonAlertBoxSave.Enabled = false;
                 buttonStart.Enabled = false;
                 buttonStop.Enabled = true;
-                textBoxAlertBox.Enabled = false;
+                textBoxAlertBoxTwip.Enabled = false;
+                textBoxAlertBoxToonation.Enabled = false;
                 buttonAdd.Enabled = false;
                 buttonEdit.Enabled = false;
                 buttonDelete.Enabled = false;
@@ -108,7 +151,8 @@ namespace Twip
                 buttonAlertBoxSave.Enabled = true;
                 buttonStart.Enabled = true;
                 buttonStop.Enabled = false;
-                textBoxAlertBox.Enabled = true;
+                textBoxAlertBoxTwip.Enabled = true;
+                textBoxAlertBoxToonation.Enabled = true;
                 buttonAdd.Enabled = true;
                 buttonEdit.Enabled = true;
                 buttonDelete.Enabled = true;

@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Twip.Class.Keyboard
+namespace TCK.Class.Keyboard
 {
 
     /// <summary>
