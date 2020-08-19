@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace TCK.Class.Keyboard
+namespace TCK.Class.Hook
 {
 
     /// <summary>
@@ -21,9 +21,9 @@ namespace TCK.Class.Keyboard
         }
         public List<NotInputKey> notInputKeys = new List<NotInputKey>();
 
-        public void AddNotInputKey(char key, int time)
+        public void AddNotInputKey(Keys key, int time)
         {
-            Keys tempKey = (Keys)Enum.Parse(typeof(Keys), char.ToString(key).ToUpper());
+            Keys tempKey = key;
 
             foreach (var item in notInputKeys)
             {
@@ -113,7 +113,6 @@ namespace TCK.Class.Keyboard
                         ));
 
                 // Handle KeyDown and KeyUp events
-                bool isNotInputKey = false;
                 switch (wParam)
                 {
 
@@ -126,15 +125,11 @@ namespace TCK.Class.Keyboard
                                 if (e.KeyCode == item.key)
                                 {
                                     handled = true;
-                                    isNotInputKey = true;
-                                    break;
+                                    return 1;
                                 }
                             }
-                            if (isNotInputKey == false)
-                            {
-                                KeyDown(this, e);
-                                handled = handled || e.Handled;
-                            }
+                            KeyDown(this, e);
+                            handled = handled || e.Handled;
                         }
                         break;
                     case WM_KEYUP:

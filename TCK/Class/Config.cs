@@ -9,10 +9,19 @@ namespace TCK.Class
 {
     public class Config
     {
+        public enum EMoveDirection
+        {
+            Left,
+            Right,
+            Top,
+            Bottom
+        }
         public enum EState
         {
             Click,
             NoneClick,
+            MouseMove,
+            AbsMouseMove,
         }
         public Keys key;
         public EState state;
@@ -22,5 +31,12 @@ namespace TCK.Class
         public bool bCtrl;
         public bool bAlt;
         public bool bShift;
+        public int delay;
+
+        public int x;
+        public int y;
+
+        public EMoveDirection moveDirection;
+        public int speed;
     }
 }

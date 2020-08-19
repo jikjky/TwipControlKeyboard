@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTCK));
             this.panelTop = new System.Windows.Forms.Panel();
+            this.metroTextBoxDelay = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.textBoxAlertBoxToonation = new MetroFramework.Controls.MetroTextBox();
             this.buttonAlertBoxSave = new MetroFramework.Controls.MetroButton();
@@ -49,8 +51,6 @@
             this.buttonAdd = new MetroFramework.Controls.MetroButton();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.timerState = new System.Windows.Forms.Timer(this.components);
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroTextBoxDelay = new MetroFramework.Controls.MetroTextBox();
             this.panelTop.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,6 +72,24 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(810, 78);
             this.panelTop.TabIndex = 1;
+            // 
+            // metroTextBoxDelay
+            // 
+            this.metroTextBoxDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroTextBoxDelay.Location = new System.Drawing.Point(661, 7);
+            this.metroTextBoxDelay.Name = "metroTextBoxDelay";
+            this.metroTextBoxDelay.Size = new System.Drawing.Size(61, 28);
+            this.metroTextBoxDelay.TabIndex = 12;
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(562, 10);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(93, 19);
+            this.metroLabel2.TabIndex = 11;
+            this.metroLabel2.Text = "Roulette Delay";
             // 
             // metroLabel1
             // 
@@ -138,8 +156,9 @@
             this.labelKeyTime.AutoSize = true;
             this.labelKeyTime.Location = new System.Drawing.Point(171, 98);
             this.labelKeyTime.Name = "labelKeyTime";
-            this.labelKeyTime.Size = new System.Drawing.Size(0, 0);
+            this.labelKeyTime.Size = new System.Drawing.Size(38, 19);
             this.labelKeyTime.TabIndex = 10;
+            this.labelKeyTime.Text = "State";
             // 
             // labelState
             // 
@@ -248,29 +267,12 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(624, 292);
             this.listBox1.TabIndex = 2;
+            this.listBox1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDoubleClick);
             // 
             // timerState
             // 
             this.timerState.Enabled = true;
             this.timerState.Tick += new System.EventHandler(this.timerState_Tick);
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(562, 10);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(93, 19);
-            this.metroLabel2.TabIndex = 11;
-            this.metroLabel2.Text = "Roulette Delay";
-            // 
-            // metroTextBoxDelay
-            // 
-            this.metroTextBoxDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroTextBoxDelay.Location = new System.Drawing.Point(661, 7);
-            this.metroTextBoxDelay.Name = "metroTextBoxDelay";
-            this.metroTextBoxDelay.Size = new System.Drawing.Size(61, 28);
-            this.metroTextBoxDelay.TabIndex = 12;
             // 
             // FormTCK
             // 

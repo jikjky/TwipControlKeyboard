@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Remote;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -58,6 +59,8 @@ namespace TCK.Class.Crawler
             mDriverService.HideCommandPromptWindow = true;
 
             var options = new ChromeOptions();
+
+            options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             options.AddArgument("headless");
             options.AddArgument("no-sandbox");
             options.AddArgument("autoplay-policy=no-user-gesture-required");
@@ -108,7 +111,7 @@ namespace TCK.Class.Crawler
 
         private void GoToUrl(string url)
         {
-            mDriver.Navigate().GoToUrl(url);
+            mDriver.Navigate().GoToUrl(new System.Uri(url));
         }
 
         private EState GetState()
@@ -291,6 +294,8 @@ namespace TCK.Class.Crawler
                     {
                         if (mbGetting == false)
                         {
+                            var a = mDriver.Manage().Logs.GetLog(LogType.Browser);
+                            
                             IsNickName = GetNickName();
                             IsAmount = GetAmount();
                             IsComment = GetComment();

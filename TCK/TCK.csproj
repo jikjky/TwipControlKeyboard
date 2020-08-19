@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AA66A14B-2FFE-44F9-8A15-FF784737538F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>TKC</RootNamespace>
-    <AssemblyName>TKC</AssemblyName>
+    <RootNamespace>TCK</RootNamespace>
+    <AssemblyName>TCK</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -62,18 +62,21 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.4.0.0-alpha05\lib\net47\WebDriver.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Crawler\Crawler.cs" />
+    <Compile Include="Class\Hook\MouseHook.cs" />
+    <Compile Include="Class\Hook\MouseMove.cs" />
+    <Compile Include="Class\Hook\MouseSimulator.cs" />
     <Compile Include="Class\INI\ClassToINI.cs" />
     <Compile Include="Class\Config.cs" />
     <Compile Include="Class\INI\URLIni.cs" />
-    <Compile Include="Class\Keybaord\GlobalHook.cs" />
-    <Compile Include="Class\Keybaord\KeyboardHook.cs" />
-    <Compile Include="Class\Keybaord\KeyboardSimulator.cs" />
+    <Compile Include="Class\Hook\GlobalHook.cs" />
+    <Compile Include="Class\Hook\KeyboardHook.cs" />
+    <Compile Include="Class\Hook\KeyboardSimulator.cs" />
     <Compile Include="Class\ProcessMain.cs" />
     <Compile Include="DialogForm.cs">
       <SubType>Form</SubType>

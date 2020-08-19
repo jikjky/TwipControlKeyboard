@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace TCK.Class.Keyboard
+namespace TCK.Class.Hook
 {
 
     /// <summary>

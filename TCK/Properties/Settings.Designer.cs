@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TKC.Properties {
+namespace TCK.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

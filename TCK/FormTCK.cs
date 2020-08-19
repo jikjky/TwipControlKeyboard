@@ -13,7 +13,6 @@ using System.Threading;
 using System.Diagnostics;
 using TCK.Class.Crawler;
 using TCK.Class.INI;
-using TCK.Class.Keyboard;
 using TCK.Class;
 using static TCK.Class.ProcessMain;
 
@@ -52,7 +51,12 @@ namespace TCK
                 {
                     addString += "\t";
                 }
+                
                 addString += "Key : " + item.key + "\t\t";
+                if (item.key.ToString().Length < 4)
+                {
+                    addString += "\t";
+                }
                 addString += "Amount : " + item.amount + "\t\t";
                 addString += "Roulette : " + item.roulette;
                 listBox1.Items.Add(addString);
@@ -122,18 +126,21 @@ namespace TCK
         private void timerState_Tick(object sender, EventArgs e)
         {
             string text = "";
+            foreach (var item in process.mouseHook.notInputKeys)
+            {
+                text += " Key : " + item.key;
+                text += " Time : " + item.time.ToString("ss");
+                text += " EndTime : " + item.timeOut.ToString("ss");
+            }
             foreach (var item in process.keyboardHook.notInputKeys)
             {
                 text += " Key : " + item.key;
                 text += " Time : " + item.time.ToString("ss");
                 text += " EndTime : " + item.timeOut.ToString("ss");
+            }
 
-                labelKeyTime.Text = text;
-            }
-            if (process.keyboardHook.notInputKeys.Count == 0)
-            {
-                labelKeyTime.Text = "";
-            }
+            labelKeyTime.Text = text;
+
             if (process.TwipCrawler.IsStarted == true || process.ToonationCrawler.IsStarted == true)
             {
                 buttonAlertBoxSave.Enabled = false;
@@ -184,6 +191,17 @@ namespace TCK
             if (listBox1.SelectedIndex != -1)
             {
                 process.currentConfig.RemoveAt(listBox1.SelectedIndex);
+                process.SaveConfig();
+            }
+            ListBoxUpdate();
+        }
+
+        private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (listBox1.SelectedIndex != -1)
+            {
+                DialogForm dialogForm = new DialogForm(process, listBox1.SelectedIndex);
+                dialogForm.ShowDialog();
                 process.SaveConfig();
             }
             ListBoxUpdate();
