@@ -294,8 +294,6 @@ namespace TCK.Class.Crawler
                     {
                         if (mbGetting == false)
                         {
-                            var a = mDriver.Manage().Logs.GetLog(LogType.Browser);
-                            
                             IsNickName = GetNickName();
                             IsAmount = GetAmount();
                             IsComment = GetComment();

@@ -71,8 +71,10 @@ namespace TCK.Class
                 {
                     if (TwipCrawler.IsRoulette == true)
                     {
-                        ExcuteControl(item);
-                        TwipCrawler.IsRoulette = false;
+                        if (TwipCrawler.IsComment == item.roulette)
+                        {
+                            ExcuteControl(item);
+                        }
                     }
                     else
                     {
@@ -86,8 +88,10 @@ namespace TCK.Class
                 {
                     if (ToonationCrawler.IsRoulette == true)
                     {
-                        ExcuteControl(item);
-                        ToonationCrawler.IsRoulette = false;
+                        if (ToonationCrawler.IsComment == item.roulette)
+                        {
+                            ExcuteControl(item);
+                        }
                     }
                     else
                     {
@@ -98,6 +102,8 @@ namespace TCK.Class
                     }
                 }
             }
+            TwipCrawler.IsRoulette = false;
+            ToonationCrawler.IsRoulette = false;
         }
 
         private void ExcuteControl(Config item)
@@ -120,11 +126,11 @@ namespace TCK.Class
                     }
                     if (item.key == Keys.LButton || item.key == Keys.RButton || item.key == Keys.MButton || item.key == Keys.XButton1 || item.key == Keys.XButton2)
                     {
-                        MouseClick(item.key);
+                        MouseClick(item.key, item.time);
                     }
                     else
                     {                                                                
-                        KeyClick(item.key, item.bCtrl, item.bAlt, item.bShift);
+                        KeyClick(item.key,item.time , item.bCtrl, item.bAlt, item.bShift);
                     }
                 }).Start();
             }
@@ -132,11 +138,41 @@ namespace TCK.Class
             {
                 if (item.key == Keys.LButton || item.key == Keys.RButton || item.key == Keys.MButton || item.key == Keys.XButton1 || item.key == Keys.XButton2)
                 {
-                    mouseHook.AddNotInputKey(item.key, item.time);
+                    new Thread(() =>
+                    {
+                        DateTime objCurrentTime = new DateTime();
+                        objCurrentTime = DateTime.Now;
+
+                        while (true)
+                        {
+                            var time = DateTime.Now - objCurrentTime;
+                            if (item.delay < time.TotalMilliseconds)
+                            {
+                                break;
+                            }
+                            Thread.Sleep(10);
+                        }
+                        mouseHook.AddNotInputKey(item.key, item.time);
+                    }).Start();
                 }
                 else
                 {
-                    keyboardHook.AddNotInputKey(item.key, item.time);
+                    new Thread(() =>
+                    {
+                        DateTime objCurrentTime = new DateTime();
+                        objCurrentTime = DateTime.Now;
+
+                        while (true)
+                        {
+                            var time = DateTime.Now - objCurrentTime;
+                            if (item.delay < time.TotalMilliseconds)
+                            {
+                                break;
+                            }
+                            Thread.Sleep(10);
+                        }
+                        keyboardHook.AddNotInputKey(item.key, item.time);
+                    }).Start();                       
                 }
             }
             else if (item.state == Config.EState.MouseMove)
@@ -219,7 +255,7 @@ namespace TCK.Class
             }
         }
 
-        private void KeyClick(Keys key, bool bCtrl, bool bAlt, bool bShift)
+        private void KeyClick(Keys key,int pressTime, bool bCtrl, bool bAlt, bool bShift)
         {
             if (bCtrl == true)
             {
@@ -234,44 +270,100 @@ namespace TCK.Class
                 KeyboardSimulator.KeyDown(Keys.Shift);
             }
 
-            KeyboardSimulator.KeyPress(key);
+            KeyboardSimulator.KeyDown(key);
 
-            if (bCtrl == true)
+
+            new Thread(() =>
             {
-                KeyboardSimulator.KeyUp(Keys.Control);
-            }
-            if (bAlt == true)
-            {
-                KeyboardSimulator.KeyUp(Keys.Alt);
-            }
-            if (bShift == true)
-            {
-                KeyboardSimulator.KeyUp(Keys.Shift);
-            }
+                DateTime objCurrentTime = new DateTime();
+                objCurrentTime = DateTime.Now;
+
+                while (true)
+                {
+                    var time = DateTime.Now - objCurrentTime;
+                    if (pressTime < time.TotalMilliseconds)
+                    {
+                        break;
+                    }
+                    Thread.Sleep(10);
+                }
+
+                KeyboardSimulator.KeyUp(key);
+
+                if (bCtrl == true)
+                {
+                    KeyboardSimulator.KeyUp(Keys.Control);
+                }
+                if (bAlt == true)
+                {
+                    KeyboardSimulator.KeyUp(Keys.Alt);
+                }
+                if (bShift == true)
+                {
+                    KeyboardSimulator.KeyUp(Keys.Shift);
+                }
+            }).Start();
         }
 
-        private void MouseClick(Keys key)
+        private void MouseClick(Keys key, int pressTime)
         {
             if (key == Keys.LButton)
             {
-                MouseSimulator.Click(MouseButtons.Left);
+                MouseSimulator.MouseDown(MouseButtons.Left);
             }
             else if (key == Keys.RButton)
             {
-                MouseSimulator.Click(MouseButtons.Right);
+                MouseSimulator.MouseDown(MouseButtons.Right);
             }
             else if (key == Keys.MButton)
             {
-                MouseSimulator.Click(MouseButtons.Middle);
+                MouseSimulator.MouseDown(MouseButtons.Middle);
             }
             else if (key == Keys.XButton1)
             {
-                MouseSimulator.Click(MouseButtons.XButton1);
+                MouseSimulator.MouseDown(MouseButtons.XButton1);
             }
             else if (key == Keys.XButton2)
             {
-                MouseSimulator.Click(MouseButtons.XButton2);
+                MouseSimulator.MouseDown(MouseButtons.XButton2);
             }
+
+            new Thread(() =>
+            {
+                DateTime objCurrentTime = new DateTime();
+                objCurrentTime = DateTime.Now;
+
+                while (true)
+                {
+                    var time = DateTime.Now - objCurrentTime;
+                    if (pressTime < time.TotalMilliseconds)
+                    {
+                        break;
+                    }
+                    Thread.Sleep(10);
+                }
+
+                if (key == Keys.LButton)
+                {
+                    MouseSimulator.MouseUp(MouseButtons.Left);
+                }
+                else if (key == Keys.RButton)
+                {
+                    MouseSimulator.MouseUp(MouseButtons.Right);
+                }
+                else if (key == Keys.MButton)
+                {
+                    MouseSimulator.MouseUp(MouseButtons.Middle);
+                }
+                else if (key == Keys.XButton1)
+                {
+                    MouseSimulator.MouseUp(MouseButtons.XButton1);
+                }
+                else if (key == Keys.XButton2)
+                {
+                    MouseSimulator.MouseUp(MouseButtons.XButton2);
+                }
+            }).Start();
         }
     }
 }

@@ -71,7 +71,7 @@ namespace TCK
         {
             if (radioButtonClick.Checked == true)
             {
-                textBoxTime.Enabled = false;
+                textBoxTime.Enabled = true;
                 checkBoxCtrl.Enabled = true;
                 checkBoxAlt.Enabled = true;
                 checkBoxShift.Enabled = true;
@@ -92,7 +92,7 @@ namespace TCK
                 checkBoxAlt.Enabled = false;
                 checkBoxShift.Enabled = false;
 
-                textBoxDelay.Enabled = false;
+                textBoxDelay.Enabled = true;
 
                 metroComboBoxKey.Enabled = true;
 
