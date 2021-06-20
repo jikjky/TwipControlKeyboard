@@ -10,11 +10,12 @@ namespace TCK.Class.INI
     public class URLIni : ClassToINI
     {
         public string TwipURL { get; set; } = "";
-        public int DelayTime { get; set; } = 0;
+        public int TwipDelayTime { get; set; } = 0;
         public string ToonationURL { get; set; } = "";
+        public int ToonationDelayTime { get; set; } = 0;
         public URLIni(FileInfo fileInfo) : base(fileInfo)
         {
-            
+   
         }
     }
 }

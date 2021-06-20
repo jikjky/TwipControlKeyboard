@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTCK));
             this.panelTop = new System.Windows.Forms.Panel();
-            this.metroTextBoxDelay = new MetroFramework.Controls.MetroTextBox();
+            this.metroTextBoxTwipDelay = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.textBoxAlertBoxToonation = new MetroFramework.Controls.MetroTextBox();
@@ -51,6 +51,8 @@
             this.buttonAdd = new MetroFramework.Controls.MetroButton();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.timerState = new System.Windows.Forms.Timer(this.components);
+            this.metroTextBoxToonationDelay = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.panelTop.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -60,7 +62,9 @@
             // panelTop
             // 
             this.panelTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelTop.Controls.Add(this.metroTextBoxDelay);
+            this.panelTop.Controls.Add(this.metroTextBoxToonationDelay);
+            this.panelTop.Controls.Add(this.metroLabel3);
+            this.panelTop.Controls.Add(this.metroTextBoxTwipDelay);
             this.panelTop.Controls.Add(this.metroLabel2);
             this.panelTop.Controls.Add(this.metroLabel1);
             this.panelTop.Controls.Add(this.textBoxAlertBoxToonation);
@@ -73,13 +77,13 @@
             this.panelTop.Size = new System.Drawing.Size(810, 78);
             this.panelTop.TabIndex = 1;
             // 
-            // metroTextBoxDelay
+            // metroTextBoxTwipDelay
             // 
-            this.metroTextBoxDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroTextBoxDelay.Location = new System.Drawing.Point(661, 7);
-            this.metroTextBoxDelay.Name = "metroTextBoxDelay";
-            this.metroTextBoxDelay.Size = new System.Drawing.Size(61, 28);
-            this.metroTextBoxDelay.TabIndex = 12;
+            this.metroTextBoxTwipDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroTextBoxTwipDelay.Location = new System.Drawing.Point(661, 7);
+            this.metroTextBoxTwipDelay.Name = "metroTextBoxTwipDelay";
+            this.metroTextBoxTwipDelay.Size = new System.Drawing.Size(61, 28);
+            this.metroTextBoxTwipDelay.TabIndex = 12;
             // 
             // metroLabel2
             // 
@@ -107,7 +111,7 @@
             this.textBoxAlertBoxToonation.Location = new System.Drawing.Point(75, 41);
             this.textBoxAlertBoxToonation.Name = "textBoxAlertBoxToonation";
             this.textBoxAlertBoxToonation.PasswordChar = '*';
-            this.textBoxAlertBoxToonation.Size = new System.Drawing.Size(647, 28);
+            this.textBoxAlertBoxToonation.Size = new System.Drawing.Size(481, 28);
             this.textBoxAlertBoxToonation.TabIndex = 9;
             // 
             // buttonAlertBoxSave
@@ -274,6 +278,24 @@
             this.timerState.Enabled = true;
             this.timerState.Tick += new System.EventHandler(this.timerState_Tick);
             // 
+            // metroTextBoxToonationDelay
+            // 
+            this.metroTextBoxToonationDelay.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroTextBoxToonationDelay.Location = new System.Drawing.Point(661, 41);
+            this.metroTextBoxToonationDelay.Name = "metroTextBoxToonationDelay";
+            this.metroTextBoxToonationDelay.Size = new System.Drawing.Size(61, 28);
+            this.metroTextBoxToonationDelay.TabIndex = 14;
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(562, 44);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(93, 19);
+            this.metroLabel3.TabIndex = 13;
+            this.metroLabel3.Text = "Roulette Delay";
+            // 
             // FormTCK
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -318,8 +340,10 @@
         private MetroFramework.Controls.MetroLabel labelKeyTime;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroTextBox textBoxAlertBoxToonation;
-        private MetroFramework.Controls.MetroTextBox metroTextBoxDelay;
+        private MetroFramework.Controls.MetroTextBox metroTextBoxTwipDelay;
         private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroTextBox metroTextBoxToonationDelay;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
     }
 }
 

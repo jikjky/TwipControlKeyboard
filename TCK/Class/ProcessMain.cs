@@ -25,6 +25,7 @@ namespace TCK.Class
         public TCK.Class.Crawler.Crawler TwipCrawler = new TCK.Class.Crawler.Crawler(TwipOrToonation.Twip);
 
         public URLIni URL = new URLIni(new FileInfo("URL.ini"));
+
         public KeyboardHook keyboardHook = new KeyboardHook();
         public MouseHook mouseHook = new MouseHook();
 
@@ -102,8 +103,14 @@ namespace TCK.Class
                     }
                 }
             }
-            TwipCrawler.IsRoulette = false;
-            ToonationCrawler.IsRoulette = false;
+            if (eTot == TwipOrToonation.Twip)
+            {
+                TwipCrawler.IsRoulette = false;
+            }
+            else
+            {
+                ToonationCrawler.IsRoulette = false;
+            }
         }
 
         private void ExcuteControl(Config item)
@@ -127,7 +134,7 @@ namespace TCK.Class
                     if (item.key == Keys.LButton || item.key == Keys.RButton || item.key == Keys.MButton || item.key == Keys.XButton1 || item.key == Keys.XButton2)
                     {
                         MouseClick(item.key, item.time);
-                    }
+                    }                                                                    
                     else
                     {                                                                
                         KeyClick(item.key,item.time , item.bCtrl, item.bAlt, item.bShift);

@@ -28,10 +28,12 @@ namespace TCK
             textBoxCurrentMessage.ReadOnly = true;
             textBoxAlertBoxTwip.Text = process.URL.TwipURL;
             process.TwipCrawler.IsUrl = process.URL.TwipURL;
-            process.TwipCrawler.DelayTime = process.URL.DelayTime;
+            process.TwipCrawler.DelayTime = process.URL.TwipDelayTime;
             textBoxAlertBoxToonation.Text = process.URL.ToonationURL;
-            metroTextBoxDelay.Text = process.URL.DelayTime.ToString();
+            metroTextBoxTwipDelay.Text = process.URL.TwipDelayTime.ToString();
             process.ToonationCrawler.IsUrl = process.URL.ToonationURL;
+            process.ToonationCrawler.DelayTime = process.URL.ToonationDelayTime;
+            metroTextBoxToonationDelay.Text = process.URL.ToonationDelayTime.ToString();
             Crawler.NewStateEvent += new NewState(NewState);
             if (new FileInfo("config.json").Exists == false)
             {
@@ -66,26 +68,41 @@ namespace TCK
         private void buttonAlertBoxSave_Click(object sender, EventArgs e)
         {
             int value = 0;
-            if (int.TryParse(metroTextBoxDelay.Text, out value) == false)
+            if (int.TryParse(metroTextBoxTwipDelay.Text, out value) == false)
             {
                 MessageBox.Show("Delay Time is not number");
                 return;
             }
 
-            process.URL.DelayTime = value;
+            process.URL.TwipDelayTime = value;
+            if (int.TryParse(metroTextBoxToonationDelay.Text, out value) == false)
+            {
+                MessageBox.Show("Delay Time is not number");
+                return;
+            }
+            process.URL.ToonationDelayTime = value;
             process.URL.TwipURL = textBoxAlertBoxTwip.Text;
             process.URL.ToonationURL = textBoxAlertBoxToonation.Text;
 
             process.URL.SaveINI();
             process.TwipCrawler.IsUrl = process.URL.TwipURL;
+            if (int.TryParse(metroTextBoxTwipDelay.Text, out value) == false)
+            {
+                MessageBox.Show("Delay Time is not number");
+                return;
+            }
             process.TwipCrawler.DelayTime = value;
             process.ToonationCrawler.IsUrl = process.URL.ToonationURL;
+            if (int.TryParse(metroTextBoxToonationDelay.Text, out value) == false)
+            {
+                MessageBox.Show("Delay Time is not number");
+                return;
+            }
+            process.ToonationCrawler.DelayTime = value;
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            process.TwipCrawler.Dispose();
-            process.ToonationCrawler.Dispose();
         }
 
         private void NewState(TwipOrToonation eTot)
@@ -205,6 +222,11 @@ namespace TCK
                 process.SaveConfig();
             }
             ListBoxUpdate();
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
