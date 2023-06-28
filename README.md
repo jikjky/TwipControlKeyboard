@@ -1,6 +1,7 @@
 # TCK
 
-배포파일 :[Download](https://github.com/jikjky/TwipControlKeyboard/raw/master/TCK.zip)
+~~배포파일 :[Download ](https://github.com/jikjky/TwipControlKeyboard/raw/master/TCK.zip)~~
+
 배포파일 :[WebSocket Version](https://github.com/jikjky/TwipControlKeyboard/raw/master/TCK_WebSocket.zip)
 
 
