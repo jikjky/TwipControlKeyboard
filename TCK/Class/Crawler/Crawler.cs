@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -53,62 +54,86 @@ namespace TCK.Class.Crawler
 
         public void Start()
         {
-            webSocket = new WebSocket(IsUrl);
-            webSocket.OnToonationObject += On_ToonationObject;
-            webSocket.OnTwipObject += On_TwipObject;
+            if (!string.IsNullOrEmpty(IsUrl))
+            {
+                webSocket = new WebSocket(IsUrl);
+                if (MyProperty == TwipOrToonation.Toonation)
+                {
+                    webSocket.OnToonationObject += On_ToonationObject;
+                }
+                else if (MyProperty == TwipOrToonation.Twip)
+                {
+                    webSocket.OnTwipObject += On_TwipObject;
+                }
+            }
+            else
+            {
+                IsComment = "시작 실패";
+                NewStateEvent?.Invoke(MyProperty);
+                return;
+            }
             IsStarted = true;
         }
 
         public void Stop()
         {
-            webSocket.Close();
+            if (webSocket != null)
+            { 
+                webSocket.Close();
+            }
             IsStarted = false;
         }
 
         public void On_TwipObject(TwipObject value)
         {
-            if (webSocket.eCurrentMessageKind == EMessageKind.roulette)
+            if (IsStarted == true)
             {
-                IsRoulette = true;
-                value.comment = value.slotmachine_data.items[value.slotmachine_data.gotcha-1];
-                if (DelayTime < 2000)
+                if (webSocket.eCurrentMessageKind == EMessageKind.roulette)
                 {
-                    Thread.Sleep(2000);
+                    IsRoulette = true;
+                    value.comment = value.slotmachine_data.items[value.slotmachine_data.gotcha - 1];
+                    if (DelayTime < 2000)
+                    {
+                        Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        Thread.Sleep(DelayTime - 1500);
+                    }
                 }
-                else
-                {
-                    Thread.Sleep(DelayTime - 1500);
-                }
+                IsNickName = value.nickname;
+                IsAmount = value.amount;
+                IsComment = value.comment;
+                NewStateEvent?.Invoke(MyProperty);
             }
-            IsNickName = value.nickname;
-            IsAmount = value.amount;
-            IsComment = value.comment;
-            NewStateEvent?.Invoke(MyProperty);
         }
 
         public void On_ToonationObject(ToonationObject value)
         {
-            if (webSocket.eCurrentMessageKind == EMessageKind.roulette)
+            if (IsStarted == true)
             {
-                IsRoulette = true;
-                var splitValue = value.content.message.Split('-').ToList();
-                splitValue.RemoveAt(0);
-                splitValue[0] = splitValue[0].Remove(0, 1);
-                value.content.message = string.Join("-", splitValue);
-                if (DelayTime < 2000)
+                if (webSocket.eCurrentMessageKind == EMessageKind.roulette)
                 {
-                    Thread.Sleep(2000);
+                    IsRoulette = true;
+                    var splitValue = value.content.message.Split('-').ToList();
+                    splitValue.RemoveAt(0);
+                    splitValue[0] = splitValue[0].Remove(0, 1);
+                    value.content.message = string.Join("-", splitValue);
+                    if (DelayTime < 2000)
+                    {
+                        Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        Thread.Sleep(DelayTime - 1500);
+                    }
                 }
-                else
-                {
-                    Thread.Sleep(DelayTime - 1500);
-                }
-            }
-            IsNickName = value.content.account;
-            IsAmount = value.content.amount;
+                IsNickName = value.content.account;
+                IsAmount = value.content.amount;
 
-            IsComment = value.content.message;
-            NewStateEvent?.Invoke(MyProperty);
+                IsComment = value.content.message;
+                NewStateEvent?.Invoke(MyProperty);
+            }
         }
     }
 }
