@@ -80,6 +80,14 @@ namespace TCK.Class.Crawler
             if (webSocket != null)
             { 
                 webSocket.Close();
+                if (MyProperty == TwipOrToonation.Toonation)
+                {
+                    webSocket.OnToonationObject -= On_ToonationObject;
+                }
+                else if (MyProperty == TwipOrToonation.Twip)
+                {
+                    webSocket.OnTwipObject -= On_TwipObject;
+                }
             }
             IsStarted = false;
         }
